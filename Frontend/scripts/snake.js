@@ -1,4 +1,5 @@
-const cvs = document.getElementById("snake");
+(function () {
+    const cvs = document.querySelector(".snake");
 const ctx = cvs.getContext("2d");
 
 // create the unit
@@ -154,6 +155,7 @@ function draw(){
             if (answer) {
                 location.reload();
             }
+            clearTimeout(timeout);
         }, 0);
     }
     
@@ -164,11 +166,9 @@ function draw(){
     ctx.fillText(score,2*box,1.6*box);
 }
 
-playerName = prompt("What's your name?");
 // call draw function every 100 ms
 let game = setInterval(draw, 100);
-// requestAnimationFrame(draw);
-
+})();
 
 
 

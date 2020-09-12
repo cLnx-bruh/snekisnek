@@ -2,13 +2,14 @@ const express = require("express")
 const PlayerScore = require("../models/player-score.model")
 const router = express.Router()
 
-// Get all posts
-router.get("/scores", async (req, res) => {
-  const playerScores = await PlayerScore.find()
-  res.send(playerScores)
+router.get("/", async (req, res) => {
+  const result = await PlayerScore.find().sort({score: -1});
+
+  const response = result.map(score => ({name: score.name, score: score.score}));
+    res.send(response)
 });
 
-router.post('/scores', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const scoreFromRequest = req.body;
 
   const playerScore = new PlayerScore({
@@ -18,7 +19,7 @@ router.post('/scores', async (req, res, next) => {
 
   try {
     await playerScore.save();
-    res.send(playerScore);
+    res.send({name: playerScore.name, score: playerScore.score});
   } catch (error){
     next(req, res, error);
   }

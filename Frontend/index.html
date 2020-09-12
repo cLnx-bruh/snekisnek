@@ -5,14 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
     <style>
-        canvas{
-            display: block;
-            margin: 0 auto;
+        html {
+        box-sizing: border-box;
         }
+        *, *:before, *:after {
+        box-sizing: inherit;
+        }
+
+        main{
+            display: flex;
+            justify-content: space-around;
+            border: 1px solid black;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .scoreboard {
+            padding-left: 20px;
+            margin: 0;
+
+            border: 1px solid;
+
+            flex: 1;
+        }
+
+        .scoreboard .scoreItem {
+            
+        }
+
+        .scoreboard .scoreItem:nth-child(even) {
+            background-color: rgb(177, 177, 177);
+        }
+
     </style>
 </head>
 <body>
-    <canvas id="snake" width="608" height="608"></canvas>
-    <script src="snake.js"></script>
+    <main>
+        <ol class="scoreboard">
+        </ol>
+        <canvas class="snake" width="608" height="608"></canvas>
+        <script src="./scripts/snake.js"></script>
+        <script src="./scripts/scoreboard.js"></script>
+    </main>
 </body>
 </html>
