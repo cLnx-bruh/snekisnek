@@ -154,7 +154,7 @@
                 clearTimeout(timeout);
                 const playerName = prompt(`You scored ${score}. Would you like to save it in the leaderboard?`);
                 if ((playerName) && playerName.trim() !== "") {
-                    fetch('http://localhost:3000/api/scores/', {
+                    fetch(`http://${env.BACKEND_DOMAIN}/api/scores/`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
