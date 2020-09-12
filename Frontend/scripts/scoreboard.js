@@ -1,7 +1,11 @@
 (async function () {
     const scoreboard = document.querySelector(".scoreboard");
 
-    function createScoreItem(playerScore) {
+    function createScoreItem(playerScore, order) {
+        const orderElement = document.createElement("span");
+        orderElement.classList.add("order");
+        orderElement.innerText = `${order}. `;
+
         const name = document.createElement("span");
         name.classList.add("name");
         name.innerText = playerScore.name;
@@ -12,6 +16,7 @@
 
         const scoreItem = document.createElement("li");
         scoreItem.classList.add("scoreItem");
+        scoreItem.appendChild(orderElement);
         scoreItem.appendChild(name);
         scoreItem.append(":");
         scoreItem.appendChild(score);
@@ -25,7 +30,7 @@
     }
 
     const playerScores = await getPlayerScores();
-    const scoreItems = playerScores.map(playerScore => createScoreItem(playerScore));
+    const scoreItems = playerScores.map((playerScore, index) => createScoreItem(playerScore, index + 1));
 
     scoreItems.forEach(scoreItem => {
         scoreboard.appendChild(scoreItem);
