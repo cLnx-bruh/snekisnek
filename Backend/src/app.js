@@ -1,13 +1,16 @@
+const path = require('path');
+require('custom-env').env(true, path.join(__dirname, '/environments'));
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const scoreRoute = require('./routes/scores.route');
-const port = 3000
+const port = process.env.APP_PORT;
 
 const mongoose = require("mongoose") // new
 
 // Connect to MongoDB database
-mongoose.connect("mongodb://localhost:27017/snakedb", { useNewUrlParser: true,  useUnifiedTopology: true })
+mongoose.connect(process.env.DB_CONN_STRING, { useNewUrlParser: true,  useUnifiedTopology: true })
     .then(() => {
         const app = express()
 
