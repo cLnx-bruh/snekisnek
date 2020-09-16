@@ -23,14 +23,15 @@ mongoose.connect(process.env.DB_CONN_STRING, { useNewUrlParser: true,  useUnifie
 
         app.use(bodyParser.json());
 
-        app.use('/api/scores', scoreRoute);
+        app.use('/', scoreRoute);
 
         app.use(async (error, req, res, next) => {
             console.error(error.stack);
             res.sendStatus(500);
         });
 
-        app.listen(port, () => {
+        const server = app.listen(port, () => {
             console.log(`Example app listening at http://localhost:${port}`)
         })
+        server.keepAliveTimeout = 65000;
     });

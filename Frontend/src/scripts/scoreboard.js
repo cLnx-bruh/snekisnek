@@ -25,7 +25,7 @@
     }
 
     async function getPlayerScores() {
-        const response = await fetch(`http://${env.BACKEND_DOMAIN}/api/scores/`);
+        const response = await fetch(`https://${env.BACKEND_DOMAIN}/`);
         return response.json();
     }
 
