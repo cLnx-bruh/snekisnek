@@ -1,3 +1,3 @@
 const env = {
-    BACKEND_DOMAIN: "internal.lb"
+    BACKEND_DOMAIN: "internal.snekisnek.rocks"
 }
