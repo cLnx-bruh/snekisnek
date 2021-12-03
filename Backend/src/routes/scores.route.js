@@ -3,7 +3,7 @@ const PlayerScore = require("../models/player-score.model")
 const router = express.Router()
 
 router.get("/", async (req, res) => {
-  const result = await PlayerScore.find().sort({score: -1});
+  const result = await PlayerScore.find();
 
   const response = result.map(score => ({name: score.name, score: score.score}));
     res.send(response)
@@ -27,10 +27,10 @@ router.get('/healthcheck', async (_req, res, _next) => {
 router.post('/', async (req, res, next) => {
   const scoreFromRequest = req.body;
 
-  const playerScore = new PlayerScore({
-    name: scoreFromRequest.name,
-    score: scoreFromRequest.score
-  });
+  const playerScore = new PlayerScore(
+    scoreFromRequest.name,
+    scoreFromRequest.score
+  );
 
   try {
     await playerScore.save();

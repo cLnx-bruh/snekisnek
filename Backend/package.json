@@ -17,6 +17,8 @@
     "cross-env": "^7.0.2",
     "custom-env": "^2.0.1",
     "express": "^4.17.1",
-    "mongoose": "^5.10.4"
-  }
+    "pg": "^8.7.1",
+    "sql-template-strings": "^2.2.2"
+  },
+  "devDependencies": {}
 }

@@ -1,8 +1,23 @@
-const mongoose = require("mongoose")
+const db = require('../db');
+const SQL = require('sql-template-strings');
 
-const schema = mongoose.Schema({
-  name: String,
-  score: Number,
-})
+module.exports = class PlayerScore {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
 
-module.exports = mongoose.model("PlayerScore", schema)
+  async save() {
+    return db.query(SQL`INSERT INTO player_scores (name, score)
+                        VALUES (${this.name}, ${this.score})`)
+  }
+
+  static async find() {
+    const result = await db.query(SQL`
+        SELECT *
+        FROM player_scores
+        ORDER BY score DESC
+    `);
+    return result.rows;
+  };
+}
